@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_message"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.babajisoft.sample.MessageActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-2dp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteY="10dp">
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/frompart"
+            android:layout_width="match_parent"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edtfrompart"
+                android:layout_width="match_parent"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:hint="FromPart" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/topart"
+            android:layout_width="match_parent"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edttopart"
+                android:layout_width="match_parent"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:hint="ToPart" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <EditText
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/edittextstyle"
+            android:textColor="@color/colorPrimaryDark"
+            android:maxLines="5"
+            android:layout_height="150dp"
+            android:padding="5dp"
+            android:gravity="top|start"
+            android:lines="5"
+            android:text="Message"
+            android:hint="Message" />
+
+        <Button
+            android:text="Send SMS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendSms" />
+        <Button
+            android:text="SMS Slip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/SendEnglishSMS" />
+        <Button
+            android:text="मराठी स्लिप संदेश"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/SendMarathiSMS" />
+    </LinearLayout>
+</LinearLayout>

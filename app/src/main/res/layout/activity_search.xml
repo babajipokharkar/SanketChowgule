@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_search"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.babajisoft.sample.SearchActivity">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:weightSum="4">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="0.9"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_lastname"
+                android:layout_width="match_parent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:singleLine="true"
+                    android:hint="LastName" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1.1"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_name"
+                android:layout_width="match_parent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_name"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:hint="Name" />
+            </android.support.design.widget.TextInputLayout>
+         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_middlename"
+                android:layout_width="match_parent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/middle_name"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:hint="Middle" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_marginTop="5dp"
+              android:layout_marginRight="5dp"
+              android:layout_height="wrap_content">
+              <ImageButton
+                  android:text="Button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentRight="true"
+                  android:src="@drawable/ic_action_search"
+                  android:id="@+id/searchButton"/>
+          </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_edit"
+            android:id="@+id/btnedit"
+            android:layout_weight="1" />
+        <ImageButton
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btninfo"
+            android:src="@drawable/ic_action_info"
+            android:layout_weight="1" />
+        <ImageButton
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnfamily"
+            android:src="@drawable/ic_action_users"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_action_sms"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnsms"
+            android:layout_weight="1" />
+        <ImageButton
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_action_phone_start"
+            android:layout_height="wrap_content"
+            android:id="@+id/btncall"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="Sr. No"
+                    android:layout_width="match_parent"
+                    android:textSize="12dp"
+                    android:layout_weight="1.1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/srNo"
+                    android:textStyle="normal|bold"
+                    android:padding="5dp" />
+                <TextView
+                    android:text="Name"
+                    android:layout_weight="0.7"
+                    android:layout_width="match_parent"
+                    android:textSize="12dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fullName"
+                    android:textStyle="normal|bold"
+                    android:padding="5dp" />
+                <TextView
+                    android:text="Part No"
+                    android:layout_width="match_parent"
+                    android:textSize="12dp"
+                    android:layout_weight="1.1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/partNo"
+                    android:textStyle="normal|bold"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:text="Age Sex"
+                    android:layout_width="match_parent"
+                    android:textSize="12dp"
+                    android:layout_weight="1.1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ageMale"
+                    android:textStyle="normal|bold"
+                    android:padding="5dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/accent_material_dark">
+            </LinearLayout>
+            <ListView
+                android:layout_width="match_parent"
+                android:id="@+id/listView"
+                android:listSelector="#8bc34a"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+</LinearLayout>

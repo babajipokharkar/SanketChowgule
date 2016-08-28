@@ -1,114 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
+    android:background="@color/cardview_light_background"
     android:layout_height="match_parent"
     tools:context="com.babajisoft.sample.MainActivity">
-<RelativeLayout
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:id="@+id/relativeLayout"
-    app:layout_constraintLeft_toLeftOf="@+id/activity_main"
-    tools:layout_constraintLeft_creator="1"
-    app:layout_constraintTop_toTopOf="@+id/activity_main"
-    android:layout_marginTop="16dp"
-    tools:layout_constraintTop_creator="1"
-    app:layout_constraintRight_toRightOf="@+id/activity_main"
-    tools:layout_constraintRight_creator="1"
-    app:layout_constraintBottom_toBottomOf="@+id/activity_main"
-    android:layout_marginBottom="16dp"
-    tools:layout_constraintBottom_creator="1"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintVertical_bias="1.0">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:orientation="vertical"
+        android:weightSum="3">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@color/cardview_light_background"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:id="@+id/seach_layout"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorSearch"
+                    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Hello World!"
-        android:id="@+id/textView"
-        app:layout_constraintLeft_toLeftOf="@+id/relativeLayout"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/relativeLayout"
-        tools:layout_constraintRight_creator="1" />
+                    <ImageView
+                        android:src="@drawable/google_web_search_96"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imgsearch"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="21dp" />
 
-    <RadioButton
-        android:text="RadioButton"
-        android:layout_width="112dp"
-        android:layout_height="36dp"
-        android:id="@+id/radioButton"
-        app:layout_constraintLeft_toLeftOf="@+id/textView"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintBaseline_toBaselineOf="@+id/toggleButton"
-        tools:layout_constraintBaseline_creator="1" />
+                    <TextView
+                        android:text="Search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/textSearch"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:layout_below="@+id/imgsearch"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/message_layout"
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorSMS"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@drawable/sms_96"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imgSms"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="21dp" />
 
-    <ProgressBar
-        style="?android:attr/progressBarStyle"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:id="@+id/progressBar"
-        app:layout_constraintLeft_toLeftOf="@+id/textView"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBar"
-        tools:layout_constraintBottom_creator="1" />
+                    <TextView
+                        android:text="Message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/textsms"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:layout_below="@+id/imgSms"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:background="@color/cardview_light_background"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
 
-    <CheckBox
-        android:text="CheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
-        app:layout_constraintLeft_toLeftOf="@+id/textView"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        tools:layout_constraintTop_creator="1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:id="@+id/import_layout"
+                android:layout_height="match_parent">
 
-    <Spinner
-        android:layout_width="0dp"
-        android:layout_height="28dp"
-        android:id="@+id/spinner"
-        app:layout_constraintLeft_toLeftOf="@+id/textView"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/textView"
-        tools:layout_constraintRight_creator="1" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorImport"
+                    android:layout_height="match_parent">
 
-    <SeekBar
-        android:layout_width="352dp"
-        android:layout_height="25dp"
-        android:id="@+id/seekBar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintLeft_toLeftOf="@+id/textView"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        android:layout_marginBottom="39dp"
-        tools:layout_constraintBottom_creator="1" />
+                    <ImageView
+                        android:src="@drawable/download_from_the_cloud_filled_100"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imgImport"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp" />
 
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleButton"
-        android:layout_above="@+id/seekBar"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintLeft_toRightOf="@+id/checkBox"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBar"
-        android:layout_marginBottom="47dp"
-        tools:layout_constraintBottom_creator="1" />
+                    <TextView
+                        android:text="Import"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/textimport"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:layout_below="@+id/imgImport"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </LinearLayout>
 
-</RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/export_layout"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorExport"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@drawable/upload_to_the_cloud_96"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imgExport"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="21dp" />
 
+                    <TextView
+                        android:text="Export"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/textView"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:layout_below="@+id/imgExport"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:background="@color/cardview_light_background"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:id="@+id/aboutus_layout"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorAboutUs"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@drawable/about_104"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imgabout"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="21dp" />
+
+                    <TextView
+                        android:text="About Us"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/txtabout"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:layout_below="@+id/imgabout"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:id="@+id/voting_layout"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorVoting"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@drawable/thumb_up_96"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imgvoter"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="21dp" />
+
+                    <TextView
+                        android:text="Voting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:id="@+id/txtvoter"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:layout_below="@+id/imgvoter"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:textSize="11dp"
+            android:layout_weight="1.1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/srNo"
+            android:padding="5dp" />
+        <TextView
+            android:text="1. गुंते विकास कैलास"
+            android:layout_weight="0.7"
+            android:layout_width="match_parent"
+            android:textSize="11dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtFullName"
+            android:padding="5dp" />
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:textSize="11dp"
+            android:layout_weight="1.1"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/partNo"
+            android:padding="5dp" />
+
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:textSize="11dp"
+            android:layout_weight="1.1"
+            android:layout_height="wrap_content"
+            android:id="@+id/ageMale"
+            android:padding="5dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/accent_material_dark">
+    </LinearLayout>
+</LinearLayout>
