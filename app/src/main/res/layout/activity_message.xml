@@ -22,12 +22,13 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edtfrompart"
+                android:id="@+id/mobileno"
                 android:layout_width="match_parent"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_height="wrap_content"
+                android:digits="0987654321"
                 android:singleLine="true"
-                android:hint="FromPart" />
+                android:hint="Mobile No" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:id="@+id/topart"
@@ -35,13 +36,6 @@
             android:textColorHint="@color/colorPrimaryDark"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/edttopart"
-                android:layout_width="match_parent"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:hint="ToPart" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -56,7 +50,6 @@
             android:padding="5dp"
             android:gravity="top|start"
             android:lines="5"
-            android:text="Message"
             android:hint="Message" />
 
         <Button
@@ -64,15 +57,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/sendSms" />
-        <Button
-            android:text="SMS Slip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/SendEnglishSMS" />
-        <Button
-            android:text="मराठी स्लिप संदेश"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/SendMarathiSMS" />
+
     </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_import"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.babajisoft.sample.ImportActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Export Utility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dp"
+            android:id="@+id/textView3"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"/>
+
+        <TextView
+            android:text="First put file Backup in DCIM folder. \n Enter Part No range then the tab below Import Button.Now Data will be imported into mobile.."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:id="@+id/textView5"
+            android:gravity="center" />
+
+        <TextView
+            android:text="Process may take some time... Please Wait.."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="22dp"
+            android:id="@+id/textView9" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:layout_height="1dp"
+            android:layout_alignTop="@+id/imageButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/linearLayout"></LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView9"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageButton
+            android:src="@drawable/upload_to_the_cloud_96"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/uploaddata"
+            android:layout_centerVertical="true"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3" />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -5,4 +5,10 @@
     <string name="title">This is tITLE</string>
     <string name="description">Card layout sample for Broker android aplication where we will implement all things by using material design...</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+
+    <string name="SMS_DELIVERD">SMS delivered</string>
+    <string name="SMS_NOT_DELIVERD">SMS not delivered</string>
+    <string name="SMS_SENT">SMS sent</string>
+    <string name="SMS_NOT_SENT">SMS not sent</string>
 </resources>

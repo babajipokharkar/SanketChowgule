@@ -1,10 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_about_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.babajisoft.sample.AboutUsActivity">
+    tools:context="com.babajisoft.sample.AboutUsActivity"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="#FF0000"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:text="Developed by..........."
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="normal|bold"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="invisible"
+                android:id="@+id/textView11" />
+
+            <TextView
+                android:text="Website: Swapnpurtigroup.in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:id="@+id/textView10"
+                android:textStyle="normal|bold"
+                android:layout_above="@+id/textView11"
+                android:layout_centerHorizontal="true"
+                 />
+
+            <TextView
+                android:text="Mobile Number:7276148000,7709344762"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView7"
+                android:textStyle="normal|bold"
+                android:layout_above="@+id/textView8"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                />
+
+            <TextView
+                android:text="Email: info@swapnpurtigroup.in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView8"
+                android:layout_above="@+id/textView10"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:textStyle="normal|bold"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:layout_height="wrap_content"
+                android:src="@drawable/swapna_purti"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/imageView"
+                android:layout_above="@+id/textView7" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

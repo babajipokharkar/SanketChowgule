@@ -1,0 +1,210 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_element"
+    android:layout_width="fill_parent"
+    android:background="@color/cardview_light_background"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:textColor="@color/cardview_light_background"
+    android:padding="20sp" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:text="Voter Info."
+            android:textStyle="normal|bold"
+            android:textSize="18sp"
+            android:textColor="@color/cardview_dark_background" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/cardview_light_background"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text="Part No"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textColor="@color/cardview_dark_background" />
+            <TextView
+                android:id="@+id/txtpartno"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text="100"
+                android:textColor="@color/cardview_dark_background" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:text="VoterNo"
+            android:textStyle="normal|bold"
+            android:textSize="16sp"
+            android:textColor="@color/cardview_dark_background" />
+            <TextView
+                android:id="@+id/txtvoterno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5sp"
+                android:text="99"
+                android:textColor="@color/cardview_dark_background" />
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="5sp"
+                      android:text="Name"
+                      android:textStyle="normal|bold"
+                      android:textSize="16sp"
+                      android:textColor="@color/cardview_dark_background" />
+                  <TextView
+                      android:id="@+id/txtname"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="25dp"
+                      android:layout_marginTop="5sp"
+                      android:text="Babaji P Pokharkar"
+                      android:textColor="@color/cardview_dark_background" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text="HNo."
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textColor="@color/cardview_dark_background" />
+            <TextView
+                android:id="@+id/txthno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:layout_marginLeft="30dp"
+                android:text="1251"
+                android:textColor="@color/cardview_dark_background" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text="Address"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textColor="@color/cardview_dark_background" />
+            <TextView
+                android:id="@+id/txtaddress"
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text="115 Kranti Nagar, pimple nilakh, pimpri chinchwad, pune 411027"
+                android:textColor="@color/cardview_dark_background" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="5sp"
+                android:text="Booth"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textColor="@color/cardview_dark_background" />
+            <TextView
+                android:id="@+id/txtBooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_marginTop="5sp"
+                android:text="Booth"
+                android:textColor="@color/cardview_dark_background" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+
+            android:weightSum="2"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text="Mobile"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textColor="@color/cardview_dark_background" />
+            <TextView
+                android:id="@+id/txtMo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5sp"
+                android:text="9760365654"
+                android:textColor="@color/cardview_dark_background" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text="Card No"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textColor="@color/cardview_dark_background" />
+            <TextView
+                android:id="@+id/txtId"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:text="105"
+                android:textColor="@color/cardview_dark_background"
+                android:layout_weight="0.17" />
+        </LinearLayout>
+       </LinearLayout>
+</LinearLayout>
+
+
