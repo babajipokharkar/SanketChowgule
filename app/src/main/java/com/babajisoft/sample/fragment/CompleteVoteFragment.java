@@ -8,6 +8,8 @@ import android.database.SQLException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +21,15 @@ import android.widget.Toast;
 
 import com.babajisoft.sample.R;
 import com.babajisoft.sample.SearchActivity;
+import com.babajisoft.sample.adapter.PersonInfoDTOsAdapter;
 import com.babajisoft.sample.adapter.VotersAdapter;
 import com.babajisoft.sample.dto.PersonInfoDTO;
 import com.babajisoft.sample.helper.Databasehelper;
+import com.babajisoft.sample.helper.EndlessRecyclerViewScrollListener;
 import com.babajisoft.sample.helper.ToastHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class CompleteVoteFragment extends Fragment{
@@ -34,9 +39,10 @@ public class CompleteVoteFragment extends Fragment{
     ArrayList<PersonInfoDTO> votersSearchinfo;
     PersonInfoDTO selectedperson;
     VotersAdapter votersAdapter;
-    ListView listView;
+    RecyclerView listView;
     Databasehelper myDbHelper ;
     int posision;
+    PersonInfoDTOsAdapter adapter;
 
     public CompleteVoteFragment() {
         // Required empty public constructor
@@ -55,7 +61,7 @@ public class CompleteVoteFragment extends Fragment{
        View view =inflater.inflate(R.layout.fragment_completevote, container, false);
 
         searchButton=(ImageButton)view.findViewById(R.id.searchButton);
-        listView=(ListView)view.findViewById(R.id.listview_voters);
+        listView=(RecyclerView) view.findViewById(R.id.listview_voters);
         input_FromPart =(EditText)view.findViewById(R.id.input_FromPart);
         inputTopart =(EditText)view.findViewById(R.id.inputTopart);
         myDbHelper = new Databasehelper(getActivity());
@@ -104,7 +110,7 @@ public class CompleteVoteFragment extends Fragment{
         }
         @Override
         protected ArrayList<PersonInfoDTO> doInBackground(ArrayList<PersonInfoDTO>... params) {
-            return myDbHelper.getVotingDoneVotersInfo(Integer.parseInt(startfrom), Integer.parseInt(toPart), 0);
+            return myDbHelper.getVotingDoneVotersInfo(Integer.parseInt(startfrom), Integer.parseInt(toPart), 0,0);
         }
 
         @Override
@@ -112,11 +118,33 @@ public class CompleteVoteFragment extends Fragment{
             if(progressDialog != null){
                 progressDialog.dismiss();
             }
+
             if (result != null) {
                 try {
                     if (result != null) {
-                        votersAdapter = new VotersAdapter(getActivity(), R.layout.votorsinfolist_item, result);
-                        listView.setAdapter(votersAdapter);
+                        votersSearchinfo=result;
+                         adapter = new PersonInfoDTOsAdapter(votersSearchinfo);
+
+                     //   votersAdapter = new VotersAdapter(getActivity(), R.layout.votorsinfolist_item, result);
+                        listView.setAdapter(adapter);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                        listView.setLayoutManager(linearLayoutManager);
+                        listView.addOnScrollListener(new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+                            @Override
+                            public void onLoadMore(int page, int totalItemsCount) {
+                                ArrayList<PersonInfoDTO> voterSearchinfo=myDbHelper.getVotingDoneVotersInfo(Integer.parseInt(startfrom), Integer.parseInt(toPart), 0,page*100);
+
+                                votersSearchinfo.addAll(voterSearchinfo);
+                                // listView.setAdapter(adapter);
+                                // listView.setAdapter(adapter);
+                                int curSize = adapter.getItemCount();
+                                adapter.notifyItemRangeInserted(curSize, votersSearchinfo.size() - 1);
+                              /*  List<PersonInfoDTO> moreContacts = Contact.createContactsList(10, page);
+                                int curSize = adapter.getItemCount();
+                                allContacts.addAll(moreContacts);
+                                adapter.notifyItemRangeInserted(curSize, allContacts.size() - 1);*/
+                            }
+                        });
                     }
                 }catch (Exception e){
                     e.printStackTrace();

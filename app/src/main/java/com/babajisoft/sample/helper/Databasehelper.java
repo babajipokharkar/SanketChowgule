@@ -249,6 +249,37 @@ public class Databasehelper extends SQLiteOpenHelper
                 personInfoDTO.setDob(cursor.getString(cursor.getColumnIndex("dob")));
                 personInfoDTO.setAliveDead(cursor.getString(cursor.getColumnIndex("alivedead")));
                 personInfoDTO.setVotedone(cursor.getInt(cursor.getColumnIndex("voting")));
+                personInfoDTO.setLastName(cursor.getString(cursor.getColumnIndex("surname")));
+                allvotersinfo.add(personInfoDTO);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return allvotersinfo;
+    }
+    public ArrayList<PersonInfoDTO> getBirthdayVoterInfo(String currentDate,int currentDay, int currentMonth){
+        String countQuery = "SELECT  familycode,vno,voting,sectionno,newadd,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE dob like '"+currentDay+"-"+currentMonth+"-%'";
+        Cursor cursor = myDataBase.rawQuery(countQuery, null);
+        ArrayList<PersonInfoDTO> allvotersinfo=new ArrayList<>();
+        if (cursor .moveToFirst()) {
+            while (cursor.isAfterLast() == false) {
+                PersonInfoDTO personInfoDTO=new PersonInfoDTO();
+                personInfoDTO.setFamilycode(cursor.getInt(cursor.getColumnIndex("familycode")));
+                personInfoDTO.setVibhagNo(cursor.getInt(cursor.getColumnIndex("vno")));
+                personInfoDTO.setFullName(cursor.getString(cursor.getColumnIndex("fullname")));
+                personInfoDTO.setPartNo(cursor.getInt(cursor.getColumnIndex("yadibhag")));
+                personInfoDTO.setAgeSex(cursor.getString(cursor.getColumnIndex("sexage")));
+                personInfoDTO.setVoterNo(cursor.getInt(cursor.getColumnIndex("_id")));
+                personInfoDTO.setSectionNo(cursor.getInt(cursor.getColumnIndex("sectionno")));
+                personInfoDTO.setHno(cursor.getString(cursor.getColumnIndex("hno")));
+                personInfoDTO.setNewAddr(cursor.getString(cursor.getColumnIndex("newadd")));
+                personInfoDTO.setMobileNo(cursor.getString(cursor.getColumnIndex("mobile")));
+                personInfoDTO.setCardNo(cursor.getString(cursor.getColumnIndex("cardno")));
+                personInfoDTO.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+                personInfoDTO.setDob(cursor.getString(cursor.getColumnIndex("dob")));
+                personInfoDTO.setAliveDead(cursor.getString(cursor.getColumnIndex("alivedead")));
+                personInfoDTO.setVotedone(cursor.getInt(cursor.getColumnIndex("voting")));
+                personInfoDTO.setLastName(cursor.getString(cursor.getColumnIndex("surname")));
                 allvotersinfo.add(personInfoDTO);
                 cursor.moveToNext();
             }
@@ -330,6 +361,38 @@ public class Databasehelper extends SQLiteOpenHelper
     }
 
     public ArrayList<PersonInfoDTO> getFamilyInfobyVoter(PersonInfoDTO voterInfo){
+        String countQuery = "SELECT  familycode,vno,sectionno,voting,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE surname = '"+voterInfo.getLastName()+"'";
+        Cursor cursor = myDataBase.rawQuery(countQuery, null);
+        ArrayList<PersonInfoDTO> allvotersinfo=new ArrayList<>();
+        if (cursor .moveToFirst()) {
+            while (cursor.isAfterLast() == false) {
+                PersonInfoDTO personInfoDTO=new PersonInfoDTO();
+                personInfoDTO.setFamilycode(cursor.getInt(cursor.getColumnIndex("familycode")));
+                personInfoDTO.setVibhagNo(cursor.getInt(cursor.getColumnIndex("vno")));
+                personInfoDTO.setFullName(cursor.getString(cursor.getColumnIndex("fullname")));
+                personInfoDTO.setPartNo(cursor.getInt(cursor.getColumnIndex("yadibhag")));
+                personInfoDTO.setAgeSex(cursor.getString(cursor.getColumnIndex("sexage")));
+                personInfoDTO.setVoterNo(cursor.getInt(cursor.getColumnIndex("_id")));
+                personInfoDTO.setSectionNo(cursor.getInt(cursor.getColumnIndex("sectionno")));
+                personInfoDTO.setHno(cursor.getString(cursor.getColumnIndex("hno")));
+                personInfoDTO.setMobileNo(cursor.getString(cursor.getColumnIndex("mobile")));
+                personInfoDTO.setCardNo(cursor.getString(cursor.getColumnIndex("cardno")));
+                personInfoDTO.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+                personInfoDTO.setDob(cursor.getString(cursor.getColumnIndex("dob")));
+                personInfoDTO.setAliveDead(cursor.getString(cursor.getColumnIndex("alivedead")));
+                personInfoDTO.setVotedone(cursor.getInt(cursor.getColumnIndex("voting")));
+                personInfoDTO.setLastName(cursor.getString(cursor.getColumnIndex("surname")));
+                allvotersinfo.add(personInfoDTO);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return allvotersinfo;
+    }
+
+
+    //Family search
+    /*public ArrayList<PersonInfoDTO> getFamilyInfobyVoter(PersonInfoDTO voterInfo){
         String countQuery = "SELECT  familycode,vno,sectionno,voting,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE familycode = '"+voterInfo.getFamilycode()+"' LIMIT 100";
         Cursor cursor = myDataBase.rawQuery(countQuery, null);
         ArrayList<PersonInfoDTO> allvotersinfo=new ArrayList<>();
@@ -356,7 +419,7 @@ public class Databasehelper extends SQLiteOpenHelper
         }
         cursor.close();
         return allvotersinfo;
-    }
+    }*/
 
     public int deleteRecords(){
         String countQuery = "delete from MyTable where vno > 300001 and vno <317100";
@@ -412,13 +475,15 @@ public class Databasehelper extends SQLiteOpenHelper
         myDataBase.update("MyTable", row, "isUpdated = ?", new String[] { String.valueOf("1") });
         //myDataBase.close();
     }
-    public ArrayList<PersonInfoDTO> getVotingDoneVotersInfo(int startvalue,int fromvalue,int frompage){
+    public ArrayList<PersonInfoDTO> getVotingDoneVotersInfo(int startvalue,int fromvalue,int frompage,int page){
         String countQuery;
+        String offset="";
+        if(page!=0)
+            offset=" OFFSET "+page;
         if(frompage==0)
-         countQuery = "SELECT familycode,vno,voting,sectionno,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE yadibhag BETWEEN "+startvalue+" AND "+fromvalue+" AND voting=1";
+         countQuery = "SELECT familycode,vno,voting,sectionno,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,newadd,Name,middle,sexage FROM MyTable WHERE yadibhag BETWEEN "+startvalue+" AND "+fromvalue+" AND voting=1 LIMIT 100"+offset;
         else
-         countQuery = "SELECT  familycode,vno,voting,sectionno,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE yadibhag BETWEEN "+startvalue+" AND "+fromvalue+" AND (ifnull(length(voting), 0) = 0 OR voting=0)";
-
+         countQuery = "SELECT  familycode,vno,voting,sectionno,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,newadd,Name,middle,sexage FROM MyTable WHERE yadibhag BETWEEN "+startvalue+" AND "+fromvalue+" AND (ifnull(length(voting), 0) = 0 OR voting=0) LIMIT 100"+offset;
         Cursor cursor = myDataBase.rawQuery(countQuery, null);
         ArrayList<PersonInfoDTO> allvotersinfo=new ArrayList<>();
         if (cursor .moveToFirst()) {
@@ -438,7 +503,7 @@ public class Databasehelper extends SQLiteOpenHelper
                 personInfoDTO.setDob(cursor.getString(cursor.getColumnIndex("dob")));
                 personInfoDTO.setAliveDead(cursor.getString(cursor.getColumnIndex("alivedead")));
                 personInfoDTO.setVotedone(cursor.getInt(cursor.getColumnIndex("voting")));
-                personInfoDTO.setNewAddr(cursor.getString(cursor.getColumnIndex("newadd")).trim());
+                personInfoDTO.setNewAddr(cursor.getString(cursor.getColumnIndex("newadd")));
                 allvotersinfo.add(personInfoDTO);
                 cursor.moveToNext();
             }

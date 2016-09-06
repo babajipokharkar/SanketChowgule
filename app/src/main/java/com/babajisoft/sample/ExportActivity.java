@@ -1,6 +1,8 @@
 package com.babajisoft.sample;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.database.SQLException;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -11,8 +13,15 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,6 +44,10 @@ public class ExportActivity extends AppCompatActivity {
 
     private Databasehelper myDbHelper;
     ImageButton uploaddata;
+    private PopupWindow pwindo;
+    private Button loginButtonpPopup;
+    EditText username,password;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +67,18 @@ public class ExportActivity extends AppCompatActivity {
         uploaddata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new GetSerchedResult().execute();
+               // new GetSerchedResult().execute();
+                /*final Dialog dialog = new Dialog(ExportActivity.this);
+
+                dialog.setContentView(R.layout.login_for_export);
+                dialog.setTitle("Please login to Export Data.");
+                Button btnSave          = (Button) dialog.findViewById(R.id.loginButtonExport);
+
+                dialog.show();*/
+
+                initpopup();
             }
+
         });
 
       // JSONArray jsonarray= myDbHelper.getJsonFromLocal();
@@ -64,6 +87,13 @@ public class ExportActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     private class GetSerchedResult extends AsyncTask<ArrayList<PersonInfoDTO>, Void, JSONArray> {
+        String userName,Password;
+
+        public GetSerchedResult(String username, String password){
+            this.userName = username;
+            this.Password = password;
+        }
+
         @Override
         protected void onPreExecute() {
             progressDialog=new ProgressDialog(ExportActivity.this);
@@ -82,8 +112,8 @@ public class ExportActivity extends AppCompatActivity {
             try {
                 if (result.length() >= 1) {
                     JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("user_id", "demo@demo.com");
-                    jsonObject.put("password", "demo123");
+                    jsonObject.put("user_id", userName);
+                    jsonObject.put("password", Password);
                     jsonObject.put("imei_no", "12345678");
 
                     makeJsonObjectRequest(jsonObject.put("myTable", (Object) result));
@@ -104,6 +134,30 @@ public class ExportActivity extends AppCompatActivity {
         }
     }
 
+    private void initpopup(){
+
+        dialog = new Dialog(ExportActivity.this);
+
+        dialog.setContentView(R.layout.login_for_export);
+        dialog.setTitle("Please login to Export Data.");
+        Button btnSave          = (Button) dialog.findViewById(R.id.loginButtonExport);
+        username = (EditText)dialog.findViewById(R.id.edt_username_export);
+        password = (EditText) dialog.findViewById(R.id.edt_password_export);
+
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new GetSerchedResult(username.getText().toString().trim(),password.getText().toString().trim()).execute();
+
+                //ToastHelper.showToast(ExportActivity.this,username.getText().toString()+""+password.getText().toString(),Toast.LENGTH_SHORT);
+            }
+        });
+
+        dialog.show();
+
+    }
+
     private void makeJsonObjectRequest(JSONObject json) {
 
         //  showpDialog();
@@ -117,9 +171,23 @@ public class ExportActivity extends AppCompatActivity {
                 if(progressDialog != null){
                     progressDialog.dismiss();
                 }
-                myDbHelper.UpdateFlag();
-                Log.d("JSON", response.toString());
-                ToastHelper.showToast(getApplicationContext(),"Done",Toast.LENGTH_LONG);
+                try {
+                    if(response.get("status_code").toString().equalsIgnoreCase("500")) {
+                        myDbHelper.UpdateFlag();
+                        Log.d("JSON", response.toString());
+                        dialog.dismiss();
+                        ToastHelper.showToast(getApplicationContext(), "Done", Toast.LENGTH_LONG);
+                    }else if(response.get("status_code").toString().equalsIgnoreCase("400")){
+                        ToastHelper.showToast(getApplicationContext(), response.get("message").toString(), Toast.LENGTH_LONG);
+                    }else if(response.get("status_code").toString().equalsIgnoreCase("401")){
+                        ToastHelper.showToast(getApplicationContext(), response.get("message").toString(), Toast.LENGTH_LONG);
+                    }else{
+                        ToastHelper.showToast(getApplicationContext(), "Somethings went Wrong...", Toast.LENGTH_LONG);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
                /* try {
                     // Parsing json object response
                    *//* // response will be a json object

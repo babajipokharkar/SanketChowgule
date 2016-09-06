@@ -1,17 +1,22 @@
 package com.babajisoft.sample;
 
+import android.app.Dialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.database.SQLException;
 import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -22,6 +27,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.babajisoft.sample.dto.PersonInfoDTO;
 import com.babajisoft.sample.helper.Databasehelper;
+import com.babajisoft.sample.helper.ToastHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +41,9 @@ public class ImportActivity extends AppCompatActivity {
 ImageButton importbtn;
     ProgressDialog progressDialog;
     private Databasehelper myDbHelper;
+    EditText username,password;
+    Dialog dialog;
+    String DeviceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,8 @@ ImageButton importbtn;
         text.setSpan(new ForegroundColorSpan(Color.WHITE), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         actionBar.setTitle(text);
         myDbHelper = new Databasehelper(ImportActivity.this);
+        TelephonyManager mngr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        DeviceId = mngr.getDeviceId();
         try {
             myDbHelper.openDatabase();
         }catch(SQLException sqle){
@@ -54,7 +65,8 @@ ImageButton importbtn;
         importbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                makeJsonObjectRequest();
+                //makeJsonObjectRequest();
+                initpopup();
             }
         });
 
@@ -66,11 +78,34 @@ ImageButton importbtn;
 
 
     }
+    private void initpopup(){
+
+        dialog = new Dialog(ImportActivity.this);
+
+        dialog.setContentView(R.layout.login_for_export);
+        dialog.setTitle("Please login to Export Data.");
+        Button btnSave          = (Button) dialog.findViewById(R.id.loginButtonExport);
+        username = (EditText)dialog.findViewById(R.id.edt_username_export);
+        password = (EditText) dialog.findViewById(R.id.edt_password_export);
+
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //new ExportActivity.GetSerchedResult(username.getText().toString().trim(),password.getText().toString().trim()).execute();
+                makeJsonObjectRequest(username.getText().toString().trim(),password.getText().toString().trim());
+               // ToastHelper.showToast(ImportActivity.this,username.getText().toString()+""+password.getText().toString(),Toast.LENGTH_SHORT);
+            }
+        });
+
+        dialog.show();
+
+    }
 
     /**
      * Method to make json object request where json response starts wtih {
      * */
-    private void makeJsonObjectRequest() {
+    private void makeJsonObjectRequest(String userID, String pass) {
 
       //  showpDialog();
         progressDialog=new ProgressDialog(ImportActivity.this);
@@ -80,8 +115,8 @@ ImageButton importbtn;
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("user_id", "demo@demo.com");
-            jsonObject.put("password", "demo123");
+            jsonObject.put("user_id", userID);
+            jsonObject.put("password", pass);
             jsonObject.put("imei_no", "12345678");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -95,7 +130,8 @@ ImageButton importbtn;
                 if(progressDialog!= null){
                     progressDialog.dismiss();
                 }
-                parsJson(response);
+                //parsJson(response);
+                CheckResponse(response);
 
             }
         }, new Response.ErrorListener() {
@@ -115,20 +151,41 @@ ImageButton importbtn;
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
+
+    public void CheckResponse(JSONObject response){
+        try {
+            if(response.get("status_code").toString().equalsIgnoreCase("500")) {
+                myDbHelper.UpdateFlag();
+                Log.d("JSON", response.toString());
+                dialog.dismiss();
+                ToastHelper.showToast(getApplicationContext(), "Done", Toast.LENGTH_LONG);
+                parsJson(response);
+            }else if(response.get("status_code").toString().equalsIgnoreCase("400")){
+                ToastHelper.showToast(getApplicationContext(), response.get("message").toString(), Toast.LENGTH_LONG);
+            }else if(response.get("status_code").toString().equalsIgnoreCase("401")){
+                ToastHelper.showToast(getApplicationContext(), response.get("message").toString(), Toast.LENGTH_LONG);
+            }else{
+                ToastHelper.showToast(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void parsJson(JSONObject responce){
         JSONObject jsonObj = responce;
-        JSONArray jsonArray = null;
+        JSONArray myTableArray = null;
         try {
-            jsonArray = jsonObj.getJSONArray("myTable");
+            myTableArray = jsonObj.getJSONArray("myTable");
         }catch (Exception e){
             e.printStackTrace();
         }
         ArrayList<PersonInfoDTO> personArray = new ArrayList<PersonInfoDTO>();
-        if(jsonArray != null) {
+        if(myTableArray != null) {
 
-            for (int i = 0; i < jsonArray.length(); i++) {
+            for (int i = 0; i < myTableArray.length(); i++) {
                 try {
-                    JSONObject cursor = jsonArray.getJSONObject(i);
+                    JSONObject cursor = myTableArray.getJSONObject(i);
                     PersonInfoDTO personInfoDTO = new PersonInfoDTO();
                     personInfoDTO.setFamilycode(cursor.getInt("familycode")==0 ? 0 :cursor.getInt("familycode"));
                     personInfoDTO.setVibhagNo(Integer.parseInt(cursor.getString("vno"))==0 ? 0 : Integer.parseInt(cursor.getString("vno")));

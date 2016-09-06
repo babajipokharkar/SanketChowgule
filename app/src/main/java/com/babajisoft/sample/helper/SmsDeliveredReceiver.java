@@ -15,10 +15,10 @@ public class SmsDeliveredReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent arg1) {
         switch (getResultCode()) {
             case Activity.RESULT_OK:
-                Toast.makeText(context, "SMS delivered", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Message delivered", Toast.LENGTH_SHORT).show();
                 break;
             case Activity.RESULT_CANCELED:
-                Toast.makeText(context, "SMS not delivered", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Message not delivered", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

@@ -116,7 +116,7 @@ public class EditDetailsActivity extends AppCompatActivity {
         mYear = c.get(Calendar.YEAR)-18;
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
-        updateDisplay();
+        //updateDisplay();
         year1 = mYear;
         month = mMonth;
         day = mDay;
@@ -199,18 +199,16 @@ public class EditDetailsActivity extends AppCompatActivity {
         switch (id) {
 
             case DATE_DIALOG_ID:
-                System.out.println("hello6");
-
                 ((DatePickerDialog) dialog).updateDate(mYear, mMonth, mDay);
                 break;
         }
     }
 
     private void updateDisplay() {
-        System.out.println("hello2");
         birthDate.setText(new StringBuilder()
                 // Month is 0 based so add 1
-                .append(mMonth + 1).append("-").append(mDay).append("-")
+                .append(mDay).append("-")
+                .append(mMonth + 1).append("-")
                 .append(mYear).append(" "));
     }
 

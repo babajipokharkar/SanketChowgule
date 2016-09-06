@@ -23,12 +23,12 @@ public class MainSplashScreen extends AppCompatActivity {
 
                     sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-                    if(sharedPreferences.getBoolean("IsLogin",false)){
+                    /*if(sharedPreferences.getBoolean("IsLogin",false)){
                         startActivity(new Intent(getBaseContext(),MainActivity.class));
-                    }else {
+                    }else {*/
                         Intent i = new Intent(getBaseContext(), SplashScreen.class);
                         startActivity(i);
-                    }
+                    //}
 
                     //Remove activity
                     finish();

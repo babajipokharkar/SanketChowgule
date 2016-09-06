@@ -128,7 +128,31 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (selectedperson != null) {
-                    votersSearchinfo = myDbHelper.getFamilyInfobyVoter(selectedperson);
+                   // votersSearchinfo = myDbHelper.getFamilyInfobyVoter(selectedperson);
+                    ArrayList<PersonInfoDTO> votersSearchinfoTemp = new ArrayList<PersonInfoDTO>();
+                    votersSearchinfo.clear();
+                    votersSearchinfoTemp = myDbHelper.getFamilyInfobyVoter(selectedperson);
+                    boolean flag = false;
+                    int tempId = 0;
+                    for(int i=0;i<votersSearchinfoTemp.size();i++){
+                        if(flag){
+                            if(votersSearchinfoTemp.get(i).getVoterNo() == tempId){
+                                votersSearchinfo.add(votersSearchinfoTemp.get(i));
+                                tempId = tempId + 1;
+                            }else{
+                                flag = false;
+                            }
+                        }
+                        if(selectedperson.getVoterNo() == votersSearchinfoTemp.get(i).getVoterNo()){
+                            votersSearchinfo.add(votersSearchinfoTemp.get(i));
+                            tempId = votersSearchinfoTemp.get(i).getVoterNo() + 1;
+                            flag = true;
+                        }
+
+                    }
+
+
+
                     if (votersSearchinfo != null) {
                         votersAdapter = new VotersAdapter(SearchActivity.this, R.layout.votorsinfolist_item, votersSearchinfo);
                         listView.invalidate();

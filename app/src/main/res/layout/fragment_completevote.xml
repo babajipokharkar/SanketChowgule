@@ -76,9 +76,8 @@
      android:layout_width="match_parent"
      android:background="@color/cardview_dark_background"
      android:layout_height="1dp"></LinearLayout>
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:listSelector="#8bc34a"
         android:layout_height="match_parent"
         android:id="@+id/listview_voters" />
 

@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         if(sharedPreferences.getBoolean("IsLogin",false)){
-            startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this,BirthdayActivity.class));
         }
 
         loginButton2.setOnClickListener(new OnClickListener() {

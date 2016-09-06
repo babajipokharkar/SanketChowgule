@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">MVoting</string>
-    <string name="title_activity_main2">Voting</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Vinayak More</string>
+    <string name="title_activity_main2">Vinayak More</string>
+    <string name="action_settings">Settings</string>t
     <string name="title">This is tITLE</string>
     <string name="description">Card layout sample for Broker android aplication where we will implement all things by using material design...</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
 
-    <string name="SMS_DELIVERD">SMS delivered</string>
-    <string name="SMS_NOT_DELIVERD">SMS not delivered</string>
-    <string name="SMS_SENT">SMS sent</string>
-    <string name="SMS_NOT_SENT">SMS not sent</string>
+    <string name="SMS_DELIVERD">Message delivered</string>
+    <string name="SMS_NOT_DELIVERD">Message not delivered</string>
+    <string name="SMS_SENT">Message Sent Successfully.</string>
+    <string name="SMS_NOT_SENT">Message not sent</string>
 </resources>

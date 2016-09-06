@@ -32,10 +32,10 @@ package com.babajisoft.sample.adapter;
                       View v = convertView;
                       LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                       v = inflater.inflate(R.layout.votorsinfolist_item, null);
-                      TextView txtSrno = (TextView) v.findViewById(R.id.srNo);
+                      TextView txtSrno     = (TextView) v.findViewById(R.id.srNo);
                       TextView txtFullName = (TextView) v.findViewById(R.id.txtFullName);
-                      TextView txtPartNo = (TextView) v.findViewById(R.id.partNo);
-                      TextView txtageSex = (TextView) v.findViewById(R.id.ageMale);
+                      TextView txtPartNo   = (TextView) v.findViewById(R.id.partNo);
+                      TextView txtageSex   = (TextView) v.findViewById(R.id.ageMale);
 
                       txtFullName.setText(votersinfo.get(position).getFullName());
                       txtSrno.setText(votersinfo.get(position).getVibhagNo()+"");
