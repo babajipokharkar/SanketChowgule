@@ -14,7 +14,7 @@ import com.babajisoft.sample.helper.Databasehelper;
 import java.io.IOException;
 
 public class SplashScreen extends AppCompatActivity {
-Button goButton;
+Button goButton,bdaybtn;
     Databasehelper myDbHelper ;
 
     @Override
@@ -22,6 +22,7 @@ Button goButton;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         goButton=(Button)findViewById(R.id.gobutton);
+        bdaybtn=(Button)findViewById(R.id.Birthdaybutton);
         myDbHelper = new Databasehelper(SplashScreen.this);
 
         if(!myDbHelper.checkDataBase()){
@@ -31,6 +32,13 @@ Button goButton;
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(SplashScreen.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        bdaybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(SplashScreen.this,BirthdayActivity.class);
                 startActivity(intent);
             }
         });

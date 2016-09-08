@@ -9,14 +9,29 @@
     tools:context="com.babajisoft.sample.MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
         <Button
             android:text="Go.."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/gobutton"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp" />
+        <Button
+            android:text="BirthDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Birthdaybutton"
+            android:layout_toRightOf="@+id/gobutton"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp" />
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

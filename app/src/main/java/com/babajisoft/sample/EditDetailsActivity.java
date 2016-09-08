@@ -35,9 +35,9 @@ public class EditDetailsActivity extends AppCompatActivity {
     Button saveDetails;
     Databasehelper myDbHelper ;
     String mobile;
-    String email,aliveDead,addresss;
+    String email,aliveDead,addresss,regreen;
     int votorno;
-    Spinner dropdown;
+    Spinner dropdown,colordropdown;
 
     String dob;
     private int mYear;
@@ -79,8 +79,9 @@ public class EditDetailsActivity extends AppCompatActivity {
         i.putExtra("aliveDead", selectedperson.getAliveDead());*/
         Intent i=getIntent();
         String fullname= i.getExtras().getString("fullname")==null ? "" : i.getExtras().getString("fullname");
-         votorno= i.getExtras().getInt("voterno");
-         mobile = i.getExtras().getString("mobile") ==null ? "" :i.getExtras().getString("mobile");
+        votorno= i.getExtras().getInt("voterno");
+        mobile = i.getExtras().getString("mobile") ==null ? "" :i.getExtras().getString("mobile");
+        regreen = i.getExtras().getString("redgreen") ==null ? "" :i.getExtras().getString("redgreen");
          email  = i.getExtras().getString("email") ==null ? "" :i.getExtras().getString("email");
          dob   = i.getExtras().getString("dob") ==null ? "" : i.getExtras().getString("dob") ;
          aliveDead=i.getExtras().getString("aliveDead") ==null ? "" : i.getExtras().getString("aliveDead");
@@ -92,15 +93,40 @@ public class EditDetailsActivity extends AppCompatActivity {
         inputEmail.setText(email);
         address.setText(addresss);
          dropdown = (Spinner)findViewById(R.id.spinner1);
+        colordropdown= (Spinner)findViewById(R.id.colors);
         String[] items = new String[]{"Alive", "Dead"};
+        String[] colors = new String[]{"","A", "B","C", "D","E", "F","G"};
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, colors);
+        colordropdown.setAdapter(adapter1);
         if(!aliveDead.equalsIgnoreCase("")){
             if(aliveDead.equalsIgnoreCase("Alive")) {
                 dropdown.setSelection(0);
             }else{
                 dropdown.setSelection(1);
             }
+        }
+        if(!regreen.equalsIgnoreCase("")){
+            if(regreen.equalsIgnoreCase("A"))
+                 colordropdown.setSelection(1);
+            if(regreen.equalsIgnoreCase("B"))
+                 colordropdown.setSelection(2);
+            if(regreen.equalsIgnoreCase("C"))
+                 colordropdown.setSelection(3);
+            if(regreen.equalsIgnoreCase("D"))
+                 colordropdown.setSelection(4);
+            if(regreen.equalsIgnoreCase("E"))
+                 colordropdown.setSelection(5);
+            if(regreen.equalsIgnoreCase("F"))
+                 colordropdown.setSelection(6);
+            if(regreen.equalsIgnoreCase("G"))
+                 colordropdown.setSelection(7);
+
+        }else{
+            colordropdown.setSelection(0);
+
         }
 
         birthDate.setOnClickListener(new View.OnClickListener() {
@@ -135,9 +161,9 @@ public class EditDetailsActivity extends AppCompatActivity {
                 /*myDbHelper.UpdatePersonDetails(edtMobile.getText().toString(), inputEmail.getText().toString(), birthDate.getText().toString(), dropdown.getSelectedItem().toString(), votorno);
                */
                 if(addresss.trim().equals(address.getText().toString().trim())){
-                    myDbHelper.UpdatePersonDetails(edtMobile.getText().toString(), inputEmail.getText().toString(), birthDate.getText().toString(), dropdown.getSelectedItem().toString(), address.getText().toString().trim(), false, votorno);
+                    myDbHelper.UpdatePersonDetails(edtMobile.getText().toString(), inputEmail.getText().toString(), birthDate.getText().toString(), dropdown.getSelectedItem().toString(), address.getText().toString().trim(), false, votorno,colordropdown.getSelectedItem().toString());
                 }else{
-                    myDbHelper.UpdatePersonDetails(edtMobile.getText().toString(), inputEmail.getText().toString(), birthDate.getText().toString(), dropdown.getSelectedItem().toString(), address.getText().toString().trim(),true, votorno);
+                    myDbHelper.UpdatePersonDetails(edtMobile.getText().toString(), inputEmail.getText().toString(), birthDate.getText().toString(), dropdown.getSelectedItem().toString(), address.getText().toString().trim(),true, votorno,colordropdown.getSelectedItem().toString());
                 }
                 finish();
             }

@@ -76,7 +76,8 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         if(sharedPreferences.getBoolean("IsLogin",false)){
-            startActivity(new Intent(this,BirthdayActivity.class));
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
         }
 
         loginButton2.setOnClickListener(new OnClickListener() {
@@ -89,6 +90,8 @@ public class LoginActivity extends AppCompatActivity {
 
         // Set up the login form.
     }
+
+
     public void setError(String error,boolean fortext){
         if(fortext)
             edt_username.setError(error);

@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.babajisoft.sample.ImportActivity">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -76,10 +75,39 @@
             android:src="@drawable/download_from_the_cloud_filled_100"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:id="@+id/importallData"
+            android:layout_alignTop="@+id/importbtn"
+            android:layout_alignLeft="@+id/textView9"
+            android:layout_alignStart="@+id/textView9"/>
+
+        <ImageButton
+            android:src="@drawable/download_from_the_cloud_filled_100"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/importbtn"
             android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/textView3"
-            android:layout_alignStart="@+id/textView3" />
+            android:layout_alignRight="@+id/textView9"
+            android:layout_alignEnd="@+id/textView9"
+            android:layout_marginRight="18dp"
+            android:layout_marginEnd="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Fetch Updated Data"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:layout_below="@+id/importallData"
+            android:layout_alignLeft="@+id/importallData"
+            android:layout_alignStart="@+id/importallData" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Fetch All Data"
+            android:layout_height="wrap_content"
+            android:id="@+id/textVie"
+            android:layout_below="@+id/importbtn"
+            android:layout_alignLeft="@+id/importbtn"
+            android:layout_alignStart="@+id/importbtn" />
 
     </RelativeLayout>
 </LinearLayout>

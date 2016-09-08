@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.babajisoft.sample.dto.BoothTableDTO;
+import com.babajisoft.sample.dto.PartTableDTO;
 import com.babajisoft.sample.dto.PersonInfoDTO;
 
 import org.json.JSONArray;
@@ -171,7 +173,7 @@ public class Databasehelper extends SQLiteOpenHelper
     }
 
     public PersonInfoDTO getPerticularVoterInfo(int voterNo){
-        String countQuery = "SELECT  familycode,vno,sectionno,_id,email,newadd,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE _id = '"+voterNo+"' LIMIT 100";
+        String countQuery = "SELECT  familycode,vno,sectionno,_id,email,redgreen,newadd,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE _id = '"+voterNo+"' LIMIT 100";
         Cursor cursor = myDataBase.rawQuery(countQuery, null);
         PersonInfoDTO allvotersinfo= new PersonInfoDTO();
         if (cursor .moveToFirst()) {
@@ -189,6 +191,7 @@ public class Databasehelper extends SQLiteOpenHelper
             allvotersinfo.setEmail(cursor.getString(cursor.getColumnIndex("email")));
             allvotersinfo.setDob(cursor.getString(cursor.getColumnIndex("dob")));
             allvotersinfo.setAliveDead(cursor.getString(cursor.getColumnIndex("alivedead")));
+            allvotersinfo.setRedGreen(cursor.getString(cursor.getColumnIndex("redgreen")));
         }
         cursor.close();
         return allvotersinfo;
@@ -228,7 +231,7 @@ public class Databasehelper extends SQLiteOpenHelper
         return booth;
     }
     public ArrayList<PersonInfoDTO> getSearchedVotersInfo(String lastName,String name,String middle){
-        String countQuery = "SELECT  familycode,vno,voting,sectionno,newadd,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE surname like '"+lastName+"%' and name like '"+name+"%' and middle like '"+middle+"%' LIMIT 100";
+        String countQuery = "SELECT  familycode,vno,voting,sectionno,newadd,_id,redgreen,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE surname like '"+lastName+"%' and name like '"+name+"%' and middle like '"+middle+"%' LIMIT 100";
         Cursor cursor = myDataBase.rawQuery(countQuery, null);
         ArrayList<PersonInfoDTO> allvotersinfo=new ArrayList<>();
         if (cursor .moveToFirst()) {
@@ -250,6 +253,7 @@ public class Databasehelper extends SQLiteOpenHelper
                 personInfoDTO.setAliveDead(cursor.getString(cursor.getColumnIndex("alivedead")));
                 personInfoDTO.setVotedone(cursor.getInt(cursor.getColumnIndex("voting")));
                 personInfoDTO.setLastName(cursor.getString(cursor.getColumnIndex("surname")));
+                personInfoDTO.setRedGreen(cursor.getString(cursor.getColumnIndex("redgreen")));
                 allvotersinfo.add(personInfoDTO);
                 cursor.moveToNext();
             }
@@ -258,7 +262,7 @@ public class Databasehelper extends SQLiteOpenHelper
         return allvotersinfo;
     }
     public ArrayList<PersonInfoDTO> getBirthdayVoterInfo(String currentDate,int currentDay, int currentMonth){
-        String countQuery = "SELECT  familycode,vno,voting,sectionno,newadd,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE dob like '"+currentDay+"-"+currentMonth+"-%'";
+        String countQuery = "SELECT  familycode,vno,voting,sectionno,newadd,_id,redgreen,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE dob like '"+currentDay+"-"+currentMonth+"-%'";
         Cursor cursor = myDataBase.rawQuery(countQuery, null);
         ArrayList<PersonInfoDTO> allvotersinfo=new ArrayList<>();
         if (cursor .moveToFirst()) {
@@ -280,6 +284,7 @@ public class Databasehelper extends SQLiteOpenHelper
                 personInfoDTO.setAliveDead(cursor.getString(cursor.getColumnIndex("alivedead")));
                 personInfoDTO.setVotedone(cursor.getInt(cursor.getColumnIndex("voting")));
                 personInfoDTO.setLastName(cursor.getString(cursor.getColumnIndex("surname")));
+                personInfoDTO.setRedGreen(cursor.getString(cursor.getColumnIndex("redgreen")));
                 allvotersinfo.add(personInfoDTO);
                 cursor.moveToNext();
             }
@@ -349,6 +354,58 @@ public class Databasehelper extends SQLiteOpenHelper
             }
         }
     }
+
+    public void updateRecordPartDetails(ArrayList<PartTableDTO> personinfo){
+        for(int i=0; i<personinfo.size();i++){
+            String countQuery = "";
+            PartTableDTO person = personinfo.get(i);
+            try {
+                ContentValues row = new ContentValues();
+                if (isAvailable(personinfo.get(i).getSectionno(),personinfo.get(i).getYadibhag())) {
+                    row.put("sectionno", personinfo.get(i).getSectionno() == 0 ? 0 : personinfo.get(i).getSectionno());
+                    row.put("yadibhag"    , personinfo.get(i).getYadibhag() == 0 ? 0 :personinfo.get(i).getYadibhag());
+                    row.put("address",  personinfo.get(i).getAddress() == null ? "" : personinfo.get(i).getAddress());
+                    //long id = myDataBase.insert("MyTable", null, row);
+                    myDataBase.update("partdetail", row, "sectionno = ? AND yadibhag=?", new String[]{String.valueOf(personinfo.get(i).getSectionno()),String.valueOf(personinfo.get(i).getYadibhag())});
+
+                    //  countQuery = "UPDATE MyTable SET familycode="+person.getFamilycode()+",vno="+person.getVoterNo()+",fullname='"+person.getFullName()+"',yadibhag="+person.getPartNo()+",sexage='"+person.getAgeSex()+"', sectionno = "+person.getSectionNo()+", hno = '"+person.getHno()+", mobile = '"+person.getMobileNo()+", cardno = '"+person.getCardNo()+", email = '"+person.getEmail()+", dob = '"+person.getDob()+", alivedead = '"+person.getAliveDead()+", voting = "+person.getVotedone()+",newadd='"+person.getNewAddr()+"',jat='"+person.getJat()+"', surname = '"+person.getLastName()+", name = '"+person.getFirstName()+"', middle = '"+person.getMiddleName()+"  WHERE _id="+person.getId();
+                } else {
+                    row.put("sectionno", personinfo.get(i).getSectionno() == 0 ? 0 : personinfo.get(i).getSectionno());
+                    row.put("yadibhag"    , personinfo.get(i).getYadibhag() == 0 ? 0 :personinfo.get(i).getYadibhag());
+                    row.put("address",  personinfo.get(i).getAddress() == null ? "" : personinfo.get(i).getAddress());
+
+                    long id = myDataBase.insert("partdetail", null, row);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    public void updateRecordBoothDetails(ArrayList<BoothTableDTO> personinfo){
+        for(int i=0; i<personinfo.size();i++){
+            String countQuery = "";
+            BoothTableDTO person = personinfo.get(i);
+            try {
+                ContentValues row = new ContentValues();
+                if (isAvailableBooth(personinfo.get(i).getYadibhag())) {
+                    row.put("bootheng", person.getBootheng() == "" ? "" : person.getBootheng());
+                    row.put("yadibhag"    , personinfo.get(i).getYadibhag() == 0 ? 0 :personinfo.get(i).getYadibhag());
+                    row.put("booth", person.getBooth() == "" ? "" : person.getBooth());
+                    //long id = myDataBase.insert("MyTable", null, row);
+                    myDataBase.update("booth", row, "yadibhag=?", new String[]{String.valueOf(person.getYadibhag())});
+
+                    //  countQuery = "UPDATE MyTable SET familycode="+person.getFamilycode()+",vno="+person.getVoterNo()+",fullname='"+person.getFullName()+"',yadibhag="+person.getPartNo()+",sexage='"+person.getAgeSex()+"', sectionno = "+person.getSectionNo()+", hno = '"+person.getHno()+", mobile = '"+person.getMobileNo()+", cardno = '"+person.getCardNo()+", email = '"+person.getEmail()+", dob = '"+person.getDob()+", alivedead = '"+person.getAliveDead()+", voting = "+person.getVotedone()+",newadd='"+person.getNewAddr()+"',jat='"+person.getJat()+"', surname = '"+person.getLastName()+", name = '"+person.getFirstName()+"', middle = '"+person.getMiddleName()+"  WHERE _id="+person.getId();
+                } else {
+                    row.put("bootheng", person.getBootheng() == "" ? "" : person.getBootheng());
+                    row.put("yadibhag"    , personinfo.get(i).getYadibhag() == 0 ? 0 :personinfo.get(i).getYadibhag());
+                    row.put("booth", person.getBooth() == "" ? "" : person.getBooth());
+                    long id = myDataBase.insert("booth", null, row);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
     boolean isAvailable(int id){
         boolean flag=false;
         String countQuery = "SELECT  * FROM MyTable WHERE _id ="+id;
@@ -359,9 +416,29 @@ public class Databasehelper extends SQLiteOpenHelper
         cursor.close();
         return flag;
     }
+    boolean isAvailableBooth(int id){
+        boolean flag=false;
+        String countQuery = "SELECT  * FROM booth WHERE yadibhag ="+id;
+        Cursor cursor = myDataBase.rawQuery(countQuery, null);
+        if (cursor.moveToFirst()) {
+            flag = true;
+        }
+        cursor.close();
+        return flag;
+    }
+    boolean isAvailable(int id,int vibhagno){
+        boolean flag=false;
+        String countQuery = "SELECT * FROM partdetail WHERE sectionno ="+id+" AND yadibhag="+vibhagno;
+        Cursor cursor = myDataBase.rawQuery(countQuery, null);
+        if (cursor.moveToFirst()) {
+            flag = true;
+        }
+        cursor.close();
+        return flag;
+    }
 
     public ArrayList<PersonInfoDTO> getFamilyInfobyVoter(PersonInfoDTO voterInfo){
-        String countQuery = "SELECT  familycode,vno,sectionno,voting,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE surname = '"+voterInfo.getLastName()+"'";
+        String countQuery = "SELECT  familycode,vno,sectionno,voting,_id,redgreen,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,Name,middle,sexage FROM MyTable WHERE surname = '"+voterInfo.getLastName()+"'";
         Cursor cursor = myDataBase.rawQuery(countQuery, null);
         ArrayList<PersonInfoDTO> allvotersinfo=new ArrayList<>();
         if (cursor .moveToFirst()) {
@@ -382,6 +459,7 @@ public class Databasehelper extends SQLiteOpenHelper
                 personInfoDTO.setAliveDead(cursor.getString(cursor.getColumnIndex("alivedead")));
                 personInfoDTO.setVotedone(cursor.getInt(cursor.getColumnIndex("voting")));
                 personInfoDTO.setLastName(cursor.getString(cursor.getColumnIndex("surname")));
+                personInfoDTO.setRedGreen(cursor.getString(cursor.getColumnIndex("redgreen")));
                 allvotersinfo.add(personInfoDTO);
                 cursor.moveToNext();
             }
@@ -428,13 +506,14 @@ public class Databasehelper extends SQLiteOpenHelper
         cursor.close();
         return cnt;
     }
-    public void UpdatePersonDetails(String mobile,String email,String dob, String alivedead, String newAddr, boolean isAddresChange, int id){
+    public void UpdatePersonDetails(String mobile,String email,String dob, String alivedead, String newAddr, boolean isAddresChange, int id,String color){
         //  UPDATE MyTable SET mobile='9730970036',email='abcd@gmail.com',dob='11-12-1993',alivedead='Alive' WHERE _id=2
         ContentValues row = new ContentValues();
         row.put("mobile", mobile);
         row.put("email", email);
         row.put("dob", dob);
         row.put("alivedead", alivedead);
+        row.put("redgreen", color);
         row.put("isUpdated", 1);
         if(isAddresChange) {
             row.put("newadd", newAddr);
@@ -481,9 +560,9 @@ public class Databasehelper extends SQLiteOpenHelper
         if(page!=0)
             offset=" OFFSET "+page;
         if(frompage==0)
-         countQuery = "SELECT familycode,vno,voting,sectionno,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,newadd,Name,middle,sexage FROM MyTable WHERE yadibhag BETWEEN "+startvalue+" AND "+fromvalue+" AND voting=1 LIMIT 100"+offset;
+         countQuery = "SELECT familycode,vno,voting,sectionno,_id,redgreen,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,newadd,Name,middle,sexage FROM MyTable WHERE yadibhag BETWEEN "+startvalue+" AND "+fromvalue+" AND voting=1 LIMIT 100"+offset;
         else
-         countQuery = "SELECT  familycode,vno,voting,sectionno,_id,email,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,newadd,Name,middle,sexage FROM MyTable WHERE yadibhag BETWEEN "+startvalue+" AND "+fromvalue+" AND (ifnull(length(voting), 0) = 0 OR voting=0) LIMIT 100"+offset;
+         countQuery = "SELECT  familycode,vno,voting,sectionno,_id,email,redgreen,dob,alivedead,mobile,hno,yadibhag,cardno,fullname,surname,newadd,Name,middle,sexage FROM MyTable WHERE yadibhag BETWEEN "+startvalue+" AND "+fromvalue+" AND (ifnull(length(voting), 0) = 0 OR voting=0) LIMIT 100"+offset;
         Cursor cursor = myDataBase.rawQuery(countQuery, null);
         ArrayList<PersonInfoDTO> allvotersinfo=new ArrayList<>();
         if (cursor .moveToFirst()) {
@@ -504,6 +583,7 @@ public class Databasehelper extends SQLiteOpenHelper
                 personInfoDTO.setAliveDead(cursor.getString(cursor.getColumnIndex("alivedead")));
                 personInfoDTO.setVotedone(cursor.getInt(cursor.getColumnIndex("voting")));
                 personInfoDTO.setNewAddr(cursor.getString(cursor.getColumnIndex("newadd")));
+                personInfoDTO.setRedGreen(cursor.getString(cursor.getColumnIndex("redgreen")));
                 allvotersinfo.add(personInfoDTO);
                 cursor.moveToNext();
             }

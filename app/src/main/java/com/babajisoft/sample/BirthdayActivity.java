@@ -5,7 +5,9 @@ import android.database.SQLException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.babajisoft.sample.adapter.VotersAdapter;
 import com.babajisoft.sample.dto.PersonInfoDTO;
@@ -26,6 +28,7 @@ public class BirthdayActivity extends AppCompatActivity {
     Databasehelper myDbHelper;
     String currentDate;
     int CurrentDay,currenMonth;
+    TextView NoBirthday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class BirthdayActivity extends AppCompatActivity {
         setContentView(R.layout.birthday_activity);
 
         listView = (ListView)findViewById(R.id.bdaylistView);
+        NoBirthday = (TextView)findViewById(R.id.Nobirthday);
         myDbHelper = new Databasehelper(this);
         try {
             myDbHelper.openDatabase();
@@ -46,7 +50,12 @@ public class BirthdayActivity extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         currentDate = df.format(c.getTime());
         CurrentDay = c.get(Calendar.DAY_OF_MONTH);
-        currenMonth = c.get(Calendar.MONTH);
+        currenMonth = 9;//c.get(Calendar.MONTH)+1;
+
+        /*final Calendar c1 = Calendar.getInstance();
+        //mYear = c.get(Calendar.YEAR)-18;
+        currenMonth = c1.get(Calendar.MONTH)+1;
+        CurrentDay = c1.get(Calendar.DAY_OF_MONTH);*/
 
         new GetSerchedResult().execute();
 
@@ -74,8 +83,11 @@ public class BirthdayActivity extends AppCompatActivity {
                 if (result.size()>0 ) {
                     votersAdapter = new VotersAdapter(BirthdayActivity.this, R.layout.votorsinfolist_item, result);
                     listView.setAdapter(votersAdapter);
+                    NoBirthday.setVisibility(View.GONE);
+                    listView.setVisibility(View.VISIBLE);
                 }else{
-
+                    NoBirthday.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.GONE);
                 }
             }
         }

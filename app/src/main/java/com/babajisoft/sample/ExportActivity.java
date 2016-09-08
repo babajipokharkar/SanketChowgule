@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -48,6 +49,7 @@ public class ExportActivity extends AppCompatActivity {
     private Button loginButtonpPopup;
     EditText username,password;
     Dialog dialog;
+    String DeviceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class ExportActivity extends AppCompatActivity {
         }catch(SQLException sqle){
             throw sqle;
         }
+        TelephonyManager mngr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        DeviceId = mngr.getDeviceId();
         uploaddata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +118,7 @@ public class ExportActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("user_id", userName);
                     jsonObject.put("password", Password);
-                    jsonObject.put("imei_no", "12345678");
+                    jsonObject.put("imei_no", DeviceId);
 
                     makeJsonObjectRequest(jsonObject.put("myTable", (Object) result));
                 }else{

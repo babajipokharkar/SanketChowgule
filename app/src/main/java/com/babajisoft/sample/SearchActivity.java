@@ -85,6 +85,7 @@ public class SearchActivity extends AppCompatActivity {
                     i.putExtra("voterno", selectedperson.getVoterNo());
                     i.putExtra("mobile", selectedperson.getMobileNo());
                     i.putExtra("email", selectedperson.getEmail());
+                    i.putExtra("redgreen", selectedperson.getRedGreen());
                     String address;
                     if(selectedperson.getNewAddr() == null || selectedperson.getNewAddr().equalsIgnoreCase("")){
                         address = myDbHelper.getAddress(selectedperson.getSectionNo());

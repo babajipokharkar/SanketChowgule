@@ -14,6 +14,16 @@ public class PersonInfoDTO implements Serializable {
     private String lastName;
     private String NewAddr;
 
+    public String getRedGreen() {
+        return redGreen;
+    }
+
+    public void setRedGreen(String redGreen) {
+        this.redGreen = redGreen;
+    }
+
+    private String redGreen;
+
     public String getJat() {
         return jat;
     }

@@ -145,6 +145,14 @@
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown" />
 
+
+            <Spinner
+                android:id="@+id/colors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+
             <Button
                 android:text="Save Details"
                 android:layout_width="match_parent"
