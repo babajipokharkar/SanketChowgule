@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
     defaultConfig {
-        applicationId "com.babajisoft.sample"
+        applicationId "com.babajisoft.sanketc"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
@@ -21,9 +22,14 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/volley.jar')
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
     compile 'com.android.support:design:24.0.0'
     compile 'com.android.support:cardview-v7:24.0.0'
-    compile files('libs/volley.jar')
+    compile 'com.google.android.gms:play-services-analytics:9.0.0'
+    testCompile 'junit:junit:4.12'
+    compile files('libs/btsdk.jar')
+    compile files('libs/usbsdk.jar')
+    compile files('libs/zixng.jar')
 }

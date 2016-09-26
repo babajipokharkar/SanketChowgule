@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/popup_element"
     android:layout_width="fill_parent"
     android:background="@color/cardview_light_background"
     android:layout_height="fill_parent"
@@ -10,21 +9,25 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="center"
+        android:layout_marginBottom="8dp"
         android:layout_height="30dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5sp"
-            android:text="Voter Info."
+            android:text="संकेत तानाजी चौगुले\n "
             android:textStyle="normal|bold"
             android:textSize="18sp"
             android:textColor="@color/cardview_dark_background" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:background="@color/cardview_light_background"
-        android:layout_height="match_parent">
+        android:id="@+id/ovterinfoprint"
+        android:padding="10dp"
+        android:background="@drawable/border"
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
@@ -55,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5sp"
-            android:text="VoterNo"
+            android:text="Sr.No"
             android:textStyle="normal|bold"
             android:textSize="16sp"
             android:textColor="@color/cardview_dark_background" />
@@ -63,7 +66,7 @@
                 android:id="@+id/txtvoterno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="5sp"
                 android:text="99"
                 android:textColor="@color/cardview_dark_background" />
@@ -203,7 +206,9 @@
                 android:text="105"
                 android:textColor="@color/cardview_dark_background"
                 android:layout_weight="0.17" />
+
         </LinearLayout>
+
        </LinearLayout>
 </LinearLayout>
 

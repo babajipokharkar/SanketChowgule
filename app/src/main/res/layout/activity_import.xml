@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_import"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.babajisoft.sample.ImportActivity">
+    tools:context="com.babajisoft.sanketc.ImportActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -95,7 +94,6 @@
             android:layout_width="wrap_content"
             android:text="Fetch Updated Data"
             android:layout_height="wrap_content"
-            android:id="@+id/textView6"
             android:layout_below="@+id/importallData"
             android:layout_alignLeft="@+id/importallData"
             android:layout_alignStart="@+id/importallData" />
@@ -104,7 +102,6 @@
             android:layout_width="wrap_content"
             android:text="Fetch All Data"
             android:layout_height="wrap_content"
-            android:id="@+id/textVie"
             android:layout_below="@+id/importbtn"
             android:layout_alignLeft="@+id/importbtn"
             android:layout_alignStart="@+id/importbtn" />

@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_message"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.babajisoft.sample.MessageActivity">
+    tools:context="com.babajisoft.sanketc.MessageActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -16,7 +15,6 @@
         android:layout_marginTop="20dp"
         tools:layout_editor_absoluteY="10dp">
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/frompart"
             android:layout_width="match_parent"
             android:textColorHint="@color/colorPrimaryDark"
             android:layout_height="wrap_content">
@@ -31,7 +29,6 @@
                 android:hint="Mobile No" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/topart"
             android:layout_width="match_parent"
             android:textColorHint="@color/colorPrimaryDark"
             android:layout_height="wrap_content">

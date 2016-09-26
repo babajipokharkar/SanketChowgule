@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_about_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.babajisoft.sample.AboutUsActivity"
+    tools:context="com.babajisoft.sanketc.AboutUsActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -31,7 +30,7 @@
                 android:id="@+id/textView11" />
 
             <TextView
-                android:text="All Rights Reserved for Vinayak More"
+                android:text="All Rights Reserved for Swapnpurti Group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -66,8 +65,7 @@
                     android:layout_centerVertical="true"
                     android:textStyle="normal|bold"
                     android:textColor="@color/black"
-                    android:autoLink="web"
-                    android:id="@+id/textView19" />
+                    android:autoLink="web" />
 
             </RelativeLayout>
 
@@ -118,7 +116,6 @@
                 android:scaleType="fitCenter"
                 android:layout_height="wrap_content"
                 android:src="@drawable/backgroundimage"
-                android:id="@+id/imageView"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_above="@+id/textView17" />

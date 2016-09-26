@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "718406519138",
+    "project_id": "sanket-chowgule"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718406519138:android:64152b30e639482b",
+        "android_client_info": {
+          "package_name": "com.babajisoft.sanketc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlbO4SOPr2DMAMQseCmbAQiLuyyBNvNPc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-83929697-2"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

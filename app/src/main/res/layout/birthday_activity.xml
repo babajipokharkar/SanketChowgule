@@ -6,6 +6,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:background="@color/colorVoting"
     >
 
@@ -15,12 +16,13 @@
         android:text="Today's Birthday"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
-        android:drawableLeft="@drawable/birthday_30blk"
+        android:gravity="center"
+        android:drawableLeft="@drawable/ic_card_giftcard"
         android:drawablePadding="5dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="normal|bold"
         android:layout_marginLeft="10dp"
-        android:textSize="20dp"
+        android:textSize="16dp"
         />
 </RelativeLayout>
     <LinearLayout
@@ -44,7 +46,6 @@
             android:layout_width="match_parent"
             android:textSize="12dp"
             android:layout_height="wrap_content"
-            android:id="@+id/fullName"
             android:textStyle="normal|bold"
             android:padding="5dp" />
         <TextView
@@ -71,8 +72,9 @@
 
     <TextView
         android:text="No one has birthday today.."
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:textColor="@color/black"
+        android:gravity="center"
         android:textSize="18dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

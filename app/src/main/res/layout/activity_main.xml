@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:background="@color/cardview_light_background"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.babajisoft.sample.MainActivity">
+    tools:context="com.babajisoft.sanketc.MainActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -38,6 +37,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:background="@color/colorSearch"
+                    android:gravity="center"
                     android:layout_height="match_parent">
 
                     <ImageView
@@ -54,7 +54,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
-                        android:id="@+id/textSearch"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:layout_below="@+id/imgsearch"
@@ -71,6 +70,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:background="@color/colorSMS"
+                    android:gravity="center"
+
                     android:layout_height="match_parent">
                     <ImageView
                         android:src="@drawable/sms_96"
@@ -86,7 +87,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
-                        android:id="@+id/textsms"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:layout_below="@+id/imgSms"
@@ -112,6 +112,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:background="@color/colorImport"
+                    android:gravity="center"
+
                     android:layout_height="match_parent">
 
                     <ImageView
@@ -128,7 +130,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
-                        android:id="@+id/textimport"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:layout_below="@+id/imgImport"
@@ -145,6 +146,7 @@
                 android:layout_height="match_parent">
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:gravity="center"
                     android:background="@color/colorExport"
                     android:layout_height="match_parent">
                     <ImageView
@@ -161,7 +163,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
-                        android:id="@+id/textView"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:layout_below="@+id/imgExport"
@@ -185,6 +186,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:background="@color/colorAboutUs"
+                    android:gravity="center"
                     android:layout_height="match_parent">
                     <ImageView
                         android:src="@drawable/about_104"
@@ -200,7 +202,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
-                        android:id="@+id/txtabout"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:layout_below="@+id/imgabout"
@@ -218,6 +219,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:background="@color/colorVoting"
+                    android:gravity="center"
                     android:layout_height="match_parent">
                     <ImageView
                         android:src="@drawable/thumb_up_96"
@@ -233,7 +235,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
-                        android:id="@+id/txtvoter"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:layout_below="@+id/imgvoter"

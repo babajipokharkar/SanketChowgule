@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.babajisoft.sample">
+    package="com.babajisoft.sanketc">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_PersonInfoDTOS" />
@@ -17,16 +17,23 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
+        android:name="com.babajisoft.sanketc.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".AppController"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainSplashScreen"
+            android:name="com.babajisoft.sanketc.MainSplashScreen"
             android:label="@string/title_activity_main2"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -35,43 +42,59 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".helper.SmsSentReceiver" >
-        </receiver>
-        <receiver android:name=".helper.SmsDeliveredReceiver" >
-        </receiver>
+
+        <receiver android:name="com.babajisoft.sanketc.helper.SmsSentReceiver"></receiver>
+        <receiver android:name="com.babajisoft.sanketc.helper.SmsDeliveredReceiver"></receiver>
+
         <activity
-            android:name=".MainActivity"
+            android:name="com.babajisoft.sanketc.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyMaterialTheme" />
+<!--        <activity
+            android:name=".PrintImage"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyMaterialTheme" />-->
+        <activity
+            android:name="com.babajisoft.sanketc.SearchActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.babajisoft.sanketc.MessageActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.babajisoft.sanketc.AboutUsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.babajisoft.sanketc.LoginActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.babajisoft.sanketc.BirthdayActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.babajisoft.sanketc.BTDeviceList"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.babajisoft.sanketc.VotingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyMaterialTheme" />
         <activity
-            android:name=".SearchActivity"
-            android:theme="@style/AppTheme" />
-
-        <activity android:name=".MessageActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".AboutUsActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".LoginActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".BirthdayActivity"
-            android:theme="@style/AppTheme" />
-
+            android:name="com.babajisoft.sanketc.DeviceListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
         <activity
-            android:name=".VotingActivity"
+            android:name="com.babajisoft.sanketc.EditDetailsActivity"
+            android:label="Edit Details"
             android:screenOrientation="portrait"
-            android:theme="@style/MyMaterialTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
-            android:name=".EditDetailsActivity"
+            android:name="com.babajisoft.sanketc.ImportActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.babajisoft.sanketc.ExportActivity" />
+        <activity
+            android:name="com.babajisoft.sanketc.SplashScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:label="Edit Details" />
-        <activity android:name=".ImportActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ExportActivity" />
-        <activity android:name=".SplashScreen"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name="com.babajisoft.sanketc.Main_Activity"
+            android:theme="@style/AppTheme.NoTitle"></activity>
     </application>
 
 </manifest>
