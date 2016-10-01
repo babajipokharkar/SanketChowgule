@@ -121,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
             jsonObject.put("user_id",username);
             jsonObject.put("password",password);
             TelephonyManager mngr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-
             deviceId= mngr.getDeviceId();
             jsonObject.put("imei_no",c=deviceId);
         } catch (JSONException e) {

@@ -277,7 +277,7 @@ public class SearchActivity extends AppCompatActivity {
                     }
                     final String booth = myDbHelper.getBooth(selectedperson.getPartNo());
                     txtFullname.setText(selectedperson.getFullName());
-                    txtvoterno.setText(selectedperson.getSectionNo() + "");
+                    txtvoterno.setText(selectedperson.getVibhagNo() + "");
                     txtpartno.setText(selectedperson.getPartNo() + "");
                     txthno.setText(selectedperson.getHno() + "");
                     txtMo.setText(selectedperson.getMobileNo() + "");
@@ -305,7 +305,7 @@ public class SearchActivity extends AppCompatActivity {
                             Intent i=new Intent(SearchActivity.this,Main_Activity.class);
                             dialoglayout.setDrawingCacheEnabled(true);
                             i.putExtra("partno",selectedperson.getPartNo()+"");
-                            i.putExtra("srno",selectedperson.getSectionNo()+"");
+                            i.putExtra("srno",selectedperson.getVibhagNo()+"");
                             i.putExtra("name",selectedperson.getFullName());
                             i.putExtra("booth",booth);
                             i.putExtra("cardno",selectedperson.getCardNo());
