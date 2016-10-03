@@ -216,7 +216,6 @@ public class ImportActivity extends AppCompatActivity {
                 }
                 //parsJson(response);
                 CheckResponse(response);
-
             }
         }, new Response.ErrorListener() {
 
@@ -240,9 +239,7 @@ public class ImportActivity extends AppCompatActivity {
             if(response.get("status_code").toString().equalsIgnoreCase("500")) {
 
                 myDbHelper.UpdateFlag();
-                mTracker.send(new HitBuilders.EventBuilder().setCategory("ImportActivity")
-                        .setAction("A:"+a+" B:"+b +" C:"+c).build());
-              //  Log.d("JSON", response.toString());
+                            //  Log.d("JSON", response.toString());
                 dialog.dismiss();
                 ToastHelper.showToast(getApplicationContext(), "Done", Toast.LENGTH_LONG);
                 parsJson(response);

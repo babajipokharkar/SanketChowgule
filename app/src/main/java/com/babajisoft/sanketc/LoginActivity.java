@@ -137,10 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(response.get("status_code").toString().equalsIgnoreCase("500")) {
                         // myDbHelper.UpdateFlag();
                         //  Log.d("JSON", response.toString());
-
                         //    ToastHelper.showToast(getApplicationContext(), "Done", Toast.LENGTH_LONG);
-                        mTracker.send(new HitBuilders.EventBuilder().setCategory("ImportActivity")
-                                .setAction("A:"+a+" B:"+b +" C:"+c).build());
                         sharedPreferences.edit().putBoolean("IsLogin",true).commit();
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
