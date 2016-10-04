@@ -59,7 +59,7 @@ public class BirthdayActivity extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         currentDate = df.format(c.getTime());
         CurrentDay = c.get(Calendar.DAY_OF_MONTH);
-        currenMonth = 9;//c.get(Calendar.MONTH)+1;
+        currenMonth = c.get(Calendar.MONTH)+1;
 
         /*final Calendar c1 = Calendar.getInstance();
         //mYear = c.get(Calendar.YEAR)-18;
